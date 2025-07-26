@@ -1,13 +1,25 @@
-"use client"
+'use client';
 
-import { useEffect, useRef, useState } from "react"
-import Link from "next/link"
-import { ArrowRight, Download, Terminal, Code2, Server, Lightbulb } from "lucide-react"
-import { heroContent, getFeaturedProjects, skills, personalInfo } from "@/lib/content"
+import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import {
+  ArrowRight,
+  Download,
+  Terminal,
+  Code2,
+  Server,
+  Lightbulb,
+} from 'lucide-react';
+import {
+  heroContent,
+  getFeaturedProjects,
+  skills,
+  personalInfo,
+} from '@/lib/content';
 
 export default function Home() {
-  const [isVisible, setIsVisible] = useState({})
-  const observerRef = useRef<IntersectionObserver | null>(null)
+  const [isVisible, setIsVisible] = useState({});
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -17,18 +29,18 @@ export default function Home() {
             setIsVisible((prev) => ({
               ...prev,
               [entry.target.id]: true,
-            }))
+            }));
           }
-        })
+        });
       },
-      { threshold: 0.1 },
-    )
+      { threshold: 0.1 }
+    );
 
-    const elements = document.querySelectorAll("[data-animate]")
-    elements.forEach((el) => observerRef.current?.observe(el))
+    const elements = document.querySelectorAll('[data-animate]');
+    elements.forEach((el) => observerRef.current?.observe(el));
 
-    return () => observerRef.current?.disconnect()
-  }, [])
+    return () => observerRef.current?.disconnect();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
@@ -42,12 +54,17 @@ export default function Home() {
             id="hero-title"
             data-animate
             className={`transition-all duration-1000 ${
-              isVisible["hero-title"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isVisible['hero-title']
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
             }`}
           >
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 font-mono">
               <span className="text-white">{personalInfo.name}</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400"> — </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400">
+                {' '}
+                —{' '}
+              </span>
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400">
                 {personalInfo.title}
@@ -55,7 +72,9 @@ export default function Home() {
             </h1>
             <div className="flex items-center justify-center gap-2 mb-8">
               <Terminal className="w-5 h-5 text-blue-400" />
-              <p className="text-lg sm:text-xl text-gray-300 font-mono">{personalInfo.tagline}</p>
+              <p className="text-lg sm:text-xl text-gray-300 font-mono">
+                {personalInfo.tagline}
+              </p>
             </div>
           </div>
 
@@ -66,7 +85,9 @@ export default function Home() {
             id="hero-cta"
             data-animate
             className={`flex flex-col sm:flex-row gap-4 justify-center mt-12 transition-all duration-1000 delay-500 ${
-              isVisible["hero-cta"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isVisible['hero-cta']
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
             }`}
           >
             <Link
@@ -94,15 +115,21 @@ export default function Home() {
             id="bio"
             data-animate
             className={`transition-all duration-1000 delay-200 ${
-              isVisible["bio"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isVisible['bio']
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
             }`}
           >
             <div className="bg-gray-800/30 backdrop-blur-lg rounded-2xl p-8 border border-gray-700/50">
               <div className="flex items-center gap-3 mb-6">
                 <Lightbulb className="w-6 h-6 text-violet-400" />
-                <h2 className="text-2xl font-bold text-blue-400 font-mono">About Me</h2>
+                <h2 className="text-2xl font-bold text-blue-400 font-mono">
+                  About Me
+                </h2>
               </div>
-              <p className="text-lg text-gray-300 leading-relaxed font-mono mb-6">{heroContent.philosophy}</p>
+              <p className="text-lg text-gray-300 leading-relaxed font-mono mb-6">
+                {heroContent.philosophy}
+              </p>
               <div className="flex items-center gap-4 text-sm text-gray-400 font-mono">
                 <span>🚀 Founder of DEC Tech</span>
                 <span>⚡ Clean Energy Innovation</span>
@@ -127,12 +154,16 @@ export default function Home() {
             id="skills-title"
             data-animate
             className={`transition-all duration-1000 ${
-              isVisible["skills-title"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isVisible['skills-title']
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
             }`}
           >
             <div className="flex items-center gap-3 mb-12">
               <Code2 className="w-6 h-6 text-blue-400" />
-              <h2 className="text-3xl font-bold text-white font-mono">Core Technologies</h2>
+              <h2 className="text-3xl font-bold text-white font-mono">
+                Core Technologies
+              </h2>
             </div>
           </div>
 
@@ -147,12 +178,16 @@ export default function Home() {
             id="projects-title"
             data-animate
             className={`flex items-center justify-between mb-12 transition-all duration-1000 ${
-              isVisible["projects-title"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isVisible['projects-title']
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
             }`}
           >
             <div className="flex items-center gap-3">
               <Server className="w-6 h-6 text-violet-400" />
-              <h2 className="text-3xl font-bold text-white font-mono">Featured Projects</h2>
+              <h2 className="text-3xl font-bold text-white font-mono">
+                Featured Projects
+              </h2>
             </div>
             <Link
               href="/projects"
@@ -167,7 +202,7 @@ export default function Home() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
 function BackgroundElements() {
@@ -186,19 +221,19 @@ function BackgroundElements() {
         <div className="absolute top-2/3 right-1/4 w-1 h-1 bg-violet-300 rounded-full animate-ping opacity-20"></div>
       </div>
     </>
-  )
+  );
 }
 
 function TerminalAnimation() {
-  const [currentLine, setCurrentLine] = useState(0)
-  const lines = heroContent.terminalLines
+  const [currentLine, setCurrentLine] = useState(0);
+  const lines = heroContent.terminalLines;
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentLine((prev) => (prev + 1) % lines.length)
-    }, 2000)
-    return () => clearInterval(interval)
-  }, [lines])
+      setCurrentLine((prev) => (prev + 1) % lines.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [lines]);
 
   return (
     <div className="bg-gray-900/80 backdrop-blur-sm rounded-lg p-4 max-w-md mx-auto border border-gray-700">
@@ -212,32 +247,40 @@ function TerminalAnimation() {
         <span className="animate-pulse">|</span>
       </div>
     </div>
-  )
+  );
 }
 
 function SkillsGrid({ isVisible }: { isVisible: any }) {
   return (
-    <div id="skills-grid" data-animate className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div
+      id="skills-grid"
+      data-animate
+      className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
+    >
       {skills.slice(0, 12).map((skill, index) => (
         <div
           key={skill.name}
           className={`transition-all duration-700 ${
-            isVisible["skills-grid"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            isVisible['skills-grid']
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-4'
           }`}
           style={{ transitionDelay: `${index * 100}ms` }}
         >
           <div className="bg-gray-800/50 backdrop-blur-lg rounded-xl p-4 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:scale-105">
             <skill.icon className="w-6 h-6 text-blue-400 mb-2" />
-            <span className="text-sm font-mono text-gray-300">{skill.name}</span>
+            <span className="text-sm font-mono text-gray-300">
+              {skill.name}
+            </span>
           </div>
         </div>
       ))}
     </div>
-  )
+  );
 }
 
 function FeaturedProjects({ isVisible }: { isVisible: any }) {
-  const featuredProjects = getFeaturedProjects()
+  const featuredProjects = getFeaturedProjects();
 
   return (
     <div className="space-y-8">
@@ -247,7 +290,9 @@ function FeaturedProjects({ isVisible }: { isVisible: any }) {
           id={project.id}
           data-animate
           className={`transition-all duration-1000 ${
-            isVisible[project.id] ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+            isVisible[project.id]
+              ? 'opacity-100 translate-x-0'
+              : 'opacity-0 translate-x-8'
           }`}
           style={{ transitionDelay: `${index * 200}ms` }}
         >
@@ -258,14 +303,18 @@ function FeaturedProjects({ isVisible }: { isVisible: any }) {
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-2xl font-bold text-white font-mono">{project.title}</h3>
-                  {project.status === "in-progress" && (
+                  <h3 className="text-2xl font-bold text-white font-mono">
+                    {project.title}
+                  </h3>
+                  {project.status === 'in-progress' && (
                     <span className="px-2 py-1 bg-yellow-600 text-yellow-100 text-xs font-mono rounded">
                       IN PROGRESS
                     </span>
                   )}
                 </div>
-                <p className="text-gray-300 leading-relaxed mb-4">{project.problem}</p>
+                <p className="text-gray-300 leading-relaxed mb-4">
+                  {project.problem}
+                </p>
               </div>
             </div>
 
@@ -302,5 +351,5 @@ function FeaturedProjects({ isVisible }: { isVisible: any }) {
         </div>
       ))}
     </div>
-  )
+  );
 }

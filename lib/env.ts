@@ -1,4 +1,5 @@
 // Environment variable configuration and validation
+
 export interface EnvConfig {
   // Authentication
   adminUsername: string;
